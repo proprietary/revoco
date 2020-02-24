@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>revoco flash cards</title>
+	<!-- TODO: favicon -->
+	<script async src="/index.js" type="module"></script>
+  </head>
+  <body>
+	<template id="flashcard-template">
+	  <style>
+		ul {
+			list-style: upper-alpha;
+		}
+	  </style>
+	  <header>
+		<slot name="prompt"><p>????</p></slot>
+	  </header>
+	  <main>
+		<section>
+			<ul name="choices">
+			</ul>
+		</section>
+	  </main>
+	</template>
+	<template id="choice-template">
+	  <style>
+	  </style>
+	  <p>
+		<slot name="content"></slot>
+		<button>Select</button>
+	  </p>
+	</template>
+  </body>
+</html>
