@@ -1,0 +1,9 @@
+namespace revoco.Flashcard;
+
+table Flashcard {
+	  card_id:uint64;
+	  prompt:string;
+	  answer:string;
+}
+
+root_type Flashcard;

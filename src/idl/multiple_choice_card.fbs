@@ -1,0 +1,9 @@
+namespace revoco.MultipleChoiceCard;
+
+table MultipleChoiceCard {
+	  card_id:uint64;
+	  prompt:string;
+	  choices:[string];
+}
+
+root_type MultipleChoiceCard;

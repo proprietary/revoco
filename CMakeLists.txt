@@ -57,6 +57,8 @@ target_sources(
 	librevoco
 	PRIVATE
 	"src/librevoco/cards.cxx"
+	"src/librevoco/spaced_repetition.cxx"
+	"src/librevoco/game_state.cxx"
 )
 target_include_directories(
 	librevoco
@@ -93,7 +95,7 @@ target_link_libraries(
   revoco_client
   PRIVATE
   librevoco
-  ncurses
+  ncursesw
   gflags::gflags
 )
 

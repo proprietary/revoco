@@ -1,0 +1,15 @@
+namespace revoco.FillInTheBlankCard;
+
+struct Tensor {
+	data:[float32];
+	dims:[uint16];
+}
+
+table FillInTheBlankCard {
+	  card_id:uint64;
+	  prompt:string;
+	  answer_ground_truth:string;
+	  answer_embedding:Tensor;
+}
+
+root_type FillInTheBlankCard;
