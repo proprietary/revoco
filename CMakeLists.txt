@@ -1,6 +1,6 @@
 # revoco -- flashcards that test you
 
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 
 project(
 	revoco
@@ -12,6 +12,33 @@ project(
 
 # machine specific settings; not version controlled
 include(local_cmake.txt OPTIONAL)
+
+# Dependencies
+
+set(CURSES_NEED_WIDE TRUE)
+find_package(Curses REQUIRED)
+# include(cmake/ncurses.cmake)
+
+find_package(Threads REQUIRED)
+
+add_subdirectory(
+  third_party/flatbuffers
+  ${CMAKE_CURRENT_BINARY_DIR}/build_flatbuffers
+  EXCLUDE_FROM_ALL
+)
+
+set(YAML_BUILD_SHARED_LIBS ON)
+add_subdirectory(
+  third_party/yaml-cpp
+  ${CMAKE_CURRENT_BINARY_DIR}/build_yaml-cpp
+  EXCLUDE_FROM_ALL
+)
+
+add_subdirectory(
+  third_party/gflags
+  ${CMAKE_CURRENT_BINARY_DIR}/build_gflags
+  EXCLUDE_FROM_ALL
+)
 
 # Source
 
@@ -36,6 +63,18 @@ target_include_directories(
 	PUBLIC
 	"include"
 )
+target_link_libraries(
+  librevoco
+  PRIVATE
+  flatbuffers
+  yaml-cpp::yaml-cpp
+)
+target_compile_features(
+  librevoco
+  PUBLIC
+  cxx_std_20
+)
+
 
 ## binaries
 
@@ -51,8 +90,11 @@ target_sources(
 	"src/revoco_client/main.cxx"
 )
 target_link_libraries(
-	revoco_client
-	librevoco
+  revoco_client
+  PRIVATE
+  librevoco
+  ncurses
+  gflags::gflags
 )
 
 
